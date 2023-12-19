@@ -27,6 +27,16 @@ export const useContactStore = defineStore('contactManagement', () => {
     }
   }
 
+  const getContactByPhoneNumber = async (number: number) => {
+    const url = 'http://localhost:3000/contact'
+    try {
+      const response = await fetch(url + '?phoneNumber=' + number)
+      return response.json()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const createContact = async (contact: Contact) => {
     const url = 'http://localhost:3000/contact'
     try {
@@ -70,6 +80,36 @@ export const useContactStore = defineStore('contactManagement', () => {
     }
   }
 
+  const updateContact = async (contact: Contact) => {
+    const url = 'http://localhost:3000/contact'
+    try {
+      await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contact)
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const updatePhone = async (phone: Phone) => {
+    const url = 'http://localhost:3000/phone'
+    try {
+      await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(phone)
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return {
     contacts,
     contactCreated,
@@ -77,6 +117,9 @@ export const useContactStore = defineStore('contactManagement', () => {
     getContactByName,
     createContact,
     createPhone,
-    deleteContact
+    deleteContact,
+    updateContact,
+    updatePhone,
+    getContactByPhoneNumber
   }
 })

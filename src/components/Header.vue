@@ -48,12 +48,16 @@ header {
   align-items: center;
 }
 
+h1 {
+  color: white;
+}
+
 ul {
   display: flex;
 }
 
 nav li a {
-  color: black;
+  color: white;
   font-weight: bold;
   padding-left: 10px;
   font-size: 16px;

@@ -8,6 +8,7 @@ const contacts = ref()
 onMounted(async () => {
   await contactStore.findAll()
   contacts.value = contactStore.contacts
+  console.table(contacts.value)
 })
 import { onMounted, ref } from 'vue'
 

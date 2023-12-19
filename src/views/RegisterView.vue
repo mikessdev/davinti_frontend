@@ -6,6 +6,7 @@ import { useContactStore } from '@/stores/contactStore'
 import { reactive, ref } from 'vue'
 import type { Contact } from '@/interfaces/contact'
 import type { Phone } from '@/interfaces/phone'
+import { validateEmptyText } from '@/validations/emptyText'
 
 const contactStore = useContactStore()
 
@@ -13,10 +14,6 @@ const headerLinks = ref([
   { id: 1, name: 'Pesquisar', to: '/search' },
   { id: 2, name: 'Lista de Contatos', to: '/' }
 ])
-
-const validateEmptyText = (text: string) => {
-  return text === '' || !text.trim() ? 'Você precisa preencher esse campo!' : ''
-}
 
 const contactForm = reactive({
   name: {
